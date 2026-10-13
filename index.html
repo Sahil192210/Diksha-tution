@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diksha Tuition - Digital Tuition Register</title>
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/>
+            <path d="M6 6h10"/>
+            <path d="M6 10h10"/>
+            <path d="M6 14h6"/>
+          </svg>
+        </div>
+        <div class="brand-info">
+          <span class="brand-title" id="sidebarBrandName">Diksha Tuition</span>
+          <span class="brand-badge">Digital Register</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <div class="nav-section-label">MAIN</div>
+        <button class="nav-item active" data-view="dashboard" id="nav-dashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+          <span>Dashboard</span>
+        </button>
+
+        <div class="nav-section-label">STUDENTS</div>
+        <button class="nav-item" data-view="current-students" id="nav-current-students">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Current Students</span>
+          <span class="badge" id="badgeCurrentCount">0</span>
+        </button>
+        <button class="nav-item" data-view="left-students" id="nav-left-students">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="18" x2="23" y1="11" y2="11"/></svg>
+          <span>Left Students</span>
+          <span class="badge muted-badge" id="badgeLeftCount">0</span>
+        </button>
+        <button class="nav-item" data-view="add-student" id="nav-add-student">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" x2="19" y1="8" y2="14"/><line x1="22" x2="16" y1="11" y2="11"/></svg>
+          <span>+ Add Student</span>
+        </button>
+
+        <div class="nav-section-label">FEES & PAYMENTS</div>
+        <button class="nav-item" data-view="fee-records" id="nav-fee-records">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <span>Fee Records</span>
+        </button>
+        <button class="nav-item" data-view="pending-fees" id="nav-pending-fees">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>Pending Fees</span>
+          <span class="badge danger-badge" id="badgePendingCount">0</span>
+        </button>
+
+        <div class="nav-section-label">COMMUNICATION</div>
+        <button class="nav-item" data-view="whatsapp" id="nav-whatsapp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>WhatsApp Hub</span>
+        </button>
+
+        <div class="nav-section-label">SYSTEM</div>
+        <button class="nav-item" data-view="settings" id="nav-settings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="current-month-card">
+          <span class="label">Current Fee Month</span>
+          <strong id="sidebarCurrentMonth">October 2026</strong>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top header bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+          </button>
+          <div class="page-title-wrap">
+            <h1 class="page-title" id="pageTitle">Dashboard</h1>
+            <p class="page-subtitle" id="pageSubtitle">Tuition overview and quick register actions</p>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="btn btn-secondary" onclick="openFeeModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Collect Fee</span>
+          </button>
+          <button class="btn btn-primary" onclick="showAddStudentForm()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+            <span>+ Add Student</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- VIEW CONTAINER -->
+      <div class="view-container">
+
+        <!-- 1. DASHBOARD VIEW -->
+        <section id="view-dashboard" class="view-panel active">
+          <!-- 4 Stat Cards -->
+          <div class="stats-grid">
+            <div class="stat-card stat-success" onclick="navigateTo('current-students')">
+              <div class="stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Total Current Students</span>
+                <span class="stat-value" id="dashTotalCurrent">0</span>
+              </div>
+              <span class="stat-hint">Active learners →</span>
+            </div>
+
+            <div class="stat-card stat-muted" onclick="navigateTo('left-students')">
+              <div class="stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="18" x2="23" y1="11" y2="11"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Total Left Students</span>
+                <span class="stat-value" id="dashTotalLeft">0</span>
+              </div>
+              <span class="stat-hint">Archived records →</span>
+            </div>
+
+            <div class="stat-card stat-danger" onclick="navigateTo('pending-fees')">
+              <div class="stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Total Pending Fees</span>
+                <span class="stat-value text-danger" id="dashTotalPending">₹0</span>
+              </div>
+              <span class="stat-hint" id="dashPendingCountText">0 students pending →</span>
+            </div>
+
+            <div class="stat-card stat-primary" onclick="navigateTo('fee-records')">
+              <div class="stat-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="stat-data">
+                <span class="stat-label">Total Collection</span>
+                <span class="stat-value text-primary" id="dashTotalCollection">₹0</span>
+              </div>
+              <span class="stat-hint">All time collected →</span>
+            </div>
+          </div>
+
+          <!-- Quick Action Banner -->
+          <div class="quick-action-bar">
+            <span class="quick-action-title">Quick Register Actions:</span>
+            <div class="quick-action-buttons">
+              <button class="btn btn-primary" onclick="showAddStudentForm()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" x2="12" y1="5" y2="19"/><line x1="5" x2="19" y1="12" y2="12"/></svg>
+                + Add Student
+              </button>
+              <button class="btn btn-emerald" onclick="openFeeModal()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Collect Fee
+              </button>
+              <button class="btn btn-whatsapp" onclick="navigateTo('whatsapp')">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                WhatsApp Message
+              </button>
+            </div>
+          </div>
+
+          <!-- Two Section Layout: Recent Fee Collections & Urgent Pending Fees -->
+          <div class="dash-tables-grid">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Recent Fee Receipts</h2>
+                  <p class="card-subtitle">Last 5 collections recorded</p>
+                </div>
+                <button class="btn btn-sm btn-ghost" onclick="navigateTo('fee-records')">View All →</button>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>Month</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Mode</th>
+                      <th>Receipt</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashRecentFeesBody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Current Month Pending Fees</h2>
+                  <p class="card-subtitle">Students with unpaid fees</p>
+                </div>
+                <button class="btn btn-sm btn-ghost" onclick="navigateTo('pending-fees')">View All →</button>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>Standard</th>
+                      <th>Amount</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashPendingFeesBody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. CURRENT STUDENTS VIEW -->
+        <section id="view-current-students" class="view-panel">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h2 class="card-title">Current Students</h2>
+                <p class="card-subtitle">Active students currently attending tuition</p>
+              </div>
+              <div class="search-filter-bar">
+                <div class="search-input-wrap">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+                  <input type="text" id="searchCurrentStudents" placeholder="Search by Student or Mobile..." oninput="filterCurrentStudents()">
+                </div>
+                <button class="btn btn-primary" onclick="showAddStudentForm()">+ Add Student</button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table" id="currentStudentsTable">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Standard</th>
+                    <th>Parent Name</th>
+                    <th>Mobile</th>
+                    <th>Monthly Fees</th>
+                    <th>Status</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="currentStudentsTableBody">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. LEFT STUDENTS VIEW -->
+        <section id="view-left-students" class="view-panel">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h2 class="card-title">Left Students</h2>
+                <p class="card-subtitle">Students who discontinued tuition. Fee records are permanently preserved.</p>
+              </div>
+              <div class="search-filter-bar">
+                <div class="search-input-wrap">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+                  <input type="text" id="searchLeftStudents" placeholder="Search by Student or Mobile..." oninput="filterLeftStudents()">
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table" id="leftStudentsTable">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Standard</th>
+                    <th>Parent Name</th>
+                    <th>Mobile</th>
+                    <th>Leaving Date</th>
+                    <th>Status</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="leftStudentsTableBody">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. ADD / EDIT STUDENT VIEW -->
+        <section id="view-add-student" class="view-panel">
+          <div class="form-container">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title" id="studentFormTitle">Add New Student</h2>
+                  <p class="card-subtitle" id="studentFormSubtitle">Fill in student details to enroll in the tuition register</p>
+                </div>
+              </div>
+              <form id="studentRecordForm" onsubmit="handleSaveStudent(event)">
+                <input type="hidden" id="studentEditId">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="studentName">Student Name *</label>
+                    <input type="text" id="studentName" required placeholder="e.g. Riya Sharma">
+                  </div>
+                  <div class="form-group">
+                    <label for="parentName">Parent Name *</label>
+                    <input type="text" id="parentName" required placeholder="e.g. Ramesh Sharma">
+                  </div>
+                  <div class="form-group">
+                    <label for="mobileNumber">Mobile Number *</label>
+                    <input type="tel" id="mobileNumber" required placeholder="e.g. 9876543210" pattern="[0-9]{10}" title="10 digit mobile number">
+                  </div>
+                  <div class="form-group">
+                    <label for="whatsappNumber">WhatsApp Number</label>
+                    <input type="tel" id="whatsappNumber" placeholder="Same as mobile if blank" pattern="[0-9]{10}">
+                  </div>
+                  <div class="form-group">
+                    <label for="standard">Standard / Class *</label>
+                    <select id="standard" required>
+                      <option value="">Select Standard</option>
+                      <option value="1st Std">1st Std</option>
+                      <option value="2nd Std">2nd Std</option>
+                      <option value="3rd Std">3rd Std</option>
+                      <option value="4th Std">4th Std</option>
+                      <option value="5th Std">5th Std</option>
+                      <option value="6th Std">6th Std</option>
+                      <option value="7th Std">7th Std</option>
+                      <option value="8th Std">8th Std</option>
+                      <option value="9th Std">9th Std</option>
+                      <option value="10th Std">10th Std</option>
+                      <option value="11th Science">11th Science</option>
+                      <option value="11th Commerce">11th Commerce</option>
+                      <option value="12th Science">12th Science</option>
+                      <option value="12th Commerce">12th Commerce</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="board">Board</label>
+                    <select id="board">
+                      <option value="CBSE">CBSE</option>
+                      <option value="State Board">State Board</option>
+                      <option value="ICSE">ICSE</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="schoolName">School Name</label>
+                    <input type="text" id="schoolName" placeholder="e.g. St. Xavier's High School">
+                  </div>
+                  <div class="form-group">
+                    <label for="monthlyFees">Monthly Fees (₹) *</label>
+                    <input type="number" id="monthlyFees" required min="100" step="50" placeholder="e.g. 1500">
+                  </div>
+                  <div class="form-group">
+                    <label for="joiningDate">Joining Date *</label>
+                    <input type="date" id="joiningDate" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="studentStatus">Status</label>
+                    <select id="studentStatus" onchange="toggleLeavingDateField()">
+                      <option value="Current">Current</option>
+                      <option value="Left">Left</option>
+                    </select>
+                  </div>
+                  <div class="form-group" id="leavingDateGroup" style="display: none;">
+                    <label for="leavingDate">Leaving Date</label>
+                    <input type="date" id="leavingDate">
+                  </div>
+                  <div class="form-group form-col-full">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="2" placeholder="e.g. Flat 302, Green Park Society, MG Road"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="button" class="btn btn-secondary" onclick="navigateTo('current-students')">Cancel</button>
+                  <button type="submit" class="btn btn-primary">Save Student Details</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. STUDENT PROFILE VIEW -->
+        <section id="view-student-profile" class="view-panel">
+          <div class="profile-header-card card">
+            <div class="profile-avatar-block">
+              <div class="profile-avatar" id="profileAvatarText">RS</div>
+              <div class="profile-info-main">
+                <div class="profile-title-line">
+                  <h2 class="profile-name" id="profileName">Riya Sharma</h2>
+                  <span class="status-badge" id="profileStatusBadge">Current</span>
+                </div>
+                <div class="profile-sub-details">
+                  <span id="profileStandardBadge">10th Std</span> • 
+                  <span id="profileBoardText">CBSE</span> • 
+                  <span id="profileSchoolText">St. Xavier's</span>
+                </div>
+              </div>
+            </div>
+            <div class="profile-header-actions">
+              <button class="btn btn-secondary" id="profileEditBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                <span>Edit</span>
+              </button>
+              <button class="btn btn-whatsapp" id="profileWhatsAppBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                <span>WhatsApp</span>
+              </button>
+              <button class="btn btn-primary" id="profileCollectFeeBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>Collect Fee</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="profile-details-grid">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Student Details</h3>
+              </div>
+              <div class="detail-list">
+                <div class="detail-row">
+                  <span class="detail-label">Parent Name</span>
+                  <span class="detail-value" id="profileParent">-</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Mobile Number</span>
+                  <span class="detail-value" id="profileMobile">-</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">WhatsApp Number</span>
+                  <span class="detail-value" id="profileWhatsApp">-</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Monthly Fees</span>
+                  <span class="detail-value fee-highlight" id="profileFeeAmount">-</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Joining Date</span>
+                  <span class="detail-value" id="profileJoiningDate">-</span>
+                </div>
+                <div class="detail-row" id="profileLeavingDateRow" style="display: none;">
+                  <span class="detail-label">Leaving Date</span>
+                  <span class="detail-value text-danger" id="profileLeavingDate">-</span>
+                </div>
+                <div class="detail-row">
+                  <span class="detail-label">Address</span>
+                  <span class="detail-value" id="profileAddress">-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header flex-between">
+                <div>
+                  <h3 class="card-title">Fee History</h3>
+                  <p class="card-subtitle">All past payments recorded</p>
+                </div>
+                <button class="btn btn-sm btn-outline-primary" id="profileHistoryAddFeeBtn">
+                  + Record Payment
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Month</th>
+                      <th>Date</th>
+                      <th>Amount</th>
+                      <th>Mode</th>
+                      <th>Receipt</th>
+                    </tr>
+                  </thead>
+                  <tbody id="profileFeeHistoryBody">
+                    <!-- Populated dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. FEE RECORDS VIEW -->
+        <section id="view-fee-records" class="view-panel">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h2 class="card-title">Fee Records</h2>
+                <p class="card-subtitle">Comprehensive ledger of all fees collected</p>
+              </div>
+              <div class="search-filter-bar">
+                <div class="search-input-wrap">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/></svg>
+                  <input type="text" id="searchFeeRecords" placeholder="Search by student name..." oninput="filterFeeRecords()">
+                </div>
+                <select id="filterFeeMonth" onchange="filterFeeRecords()" class="select-sm">
+                  <option value="">All Months</option>
+                  <!-- Populated by JS -->
+                </select>
+                <select id="filterFeeMode" onchange="filterFeeRecords()" class="select-sm">
+                  <option value="">All Modes</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Online">Online / UPI</option>
+                </select>
+                <button class="btn btn-primary" onclick="openFeeModal()">+ Collect Fee</button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table" id="feeRecordsTable">
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Month</th>
+                    <th>Date</th>
+                    <th class="text-right">Amount</th>
+                    <th>Mode</th>
+                    <th class="text-right">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="feeRecordsTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. PENDING FEES VIEW -->
+        <section id="view-pending-fees" class="view-panel">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h2 class="card-title">Pending Fees</h2>
+                <p class="card-subtitle">Current students who have not paid fees for selected month</p>
+              </div>
+              <div class="search-filter-bar">
+                <div class="form-inline-group">
+                  <label for="pendingMonthSelector" style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Check Month:</label>
+                  <select id="pendingMonthSelector" onchange="renderPendingFees()" class="select-sm">
+                    <!-- Populated dynamically -->
+                  </select>
+                </div>
+                <button class="btn btn-whatsapp" onclick="broadcastPendingReminders()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  Remind All Pending
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="data-table" id="pendingFeesTable">
+                <thead>
+                  <tr>
+                    <th>Student Name</th>
+                    <th>Standard</th>
+                    <th>Parent Name</th>
+                    <th>Month</th>
+                    <th class="text-right">Amount Pending</th>
+                    <th class="text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="pendingFeesTableBody">
+                  <!-- Populated dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 8. WHATSAPP VIEW -->
+        <section id="view-whatsapp" class="view-panel">
+          <div class="whatsapp-layout">
+            <!-- Left: Select Students -->
+            <div class="card whatsapp-recipients-card">
+              <div class="card-header flex-between">
+                <div>
+                  <h3 class="card-title">Select Recipients</h3>
+                  <p class="card-subtitle">Choose one, multiple, or all current students</p>
+                </div>
+                <span class="badge" id="selectedRecipientCount">0 Selected</span>
+              </div>
+              <div class="recipient-controls">
+                <button class="btn btn-xs btn-outline-primary" onclick="selectAllRecipients(true)">Select All Current</button>
+                <button class="btn btn-xs btn-ghost" onclick="selectAllRecipients(false)">Deselect All</button>
+              </div>
+              <div class="recipients-search">
+                <input type="text" id="searchRecipientsInput" placeholder="Filter student..." oninput="filterRecipientsList()">
+              </div>
+              <div class="recipients-list" id="recipientsCheckboxList">
+                <!-- Checkboxes populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Right: Compose Message -->
+            <div class="card whatsapp-composer-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title">Compose WhatsApp Message</h3>
+                  <p class="card-subtitle">Use saved templates or compose a custom message</p>
+                </div>
+              </div>
+
+              <!-- Quick Templates -->
+              <div class="template-selector-block">
+                <span class="template-label">Quick Saved Messages:</span>
+                <div class="template-chips">
+                  <button type="button" class="chip active" onclick="applyWhatsAppTemplate('fee')">💰 Fee Reminder</button>
+                  <button type="button" class="chip" onclick="applyWhatsAppTemplate('holiday')">🏖️ Holiday Notice</button>
+                  <button type="button" class="chip" onclick="applyWhatsAppTemplate('general')">📢 General Update</button>
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-top: 1rem;">
+                <label for="waMessageText">Message Content</label>
+                <div class="merge-tags-hint">
+                  Tags supported: <code>{STUDENT}</code>, <code>{PARENT}</code>, <code>{MONTH}</code>, <code>{AMOUNT}</code>, <code>{TUITION}</code>
+                </div>
+                <textarea id="waMessageText" rows="6" class="wa-textarea"></textarea>
+              </div>
+
+              <div class="wa-preview-box">
+                <div class="wa-preview-title">Preview for first selected recipient:</div>
+                <div class="wa-chat-bubble" id="waPreviewBubble">
+                  Select a recipient to view personalized preview
+                </div>
+              </div>
+
+              <div class="form-actions flex-between" style="margin-top: 1.5rem;">
+                <span class="text-muted text-sm" id="waSendHint">Opens WhatsApp directly</span>
+                <button class="btn btn-whatsapp btn-lg" onclick="handleSendWhatsAppBatch()">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+                  Send via WhatsApp
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. SETTINGS VIEW -->
+        <section id="view-settings" class="view-panel">
+          <div class="form-container">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Tuition & System Settings</h2>
+                  <p class="card-subtitle">Configure your tuition name, receipt headers, and data backup</p>
+                </div>
+              </div>
+
+              <form id="settingsForm" onsubmit="handleSaveSettings(event)">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="settingsTuitionName">Tuition Name (Printed on Receipt) *</label>
+                    <input type="text" id="settingsTuitionName" required value="Diksha Tuition">
+                  </div>
+                  <div class="form-group">
+                    <label for="settingsTeacherName">Teacher / Director Name</label>
+                    <input type="text" id="settingsTeacherName" value="Diksha Sharma">
+                  </div>
+                  <div class="form-group">
+                    <label for="settingsContactPhone">Contact Phone Number</label>
+                    <input type="tel" id="settingsContactPhone" value="9876543210">
+                  </div>
+                  <div class="form-group">
+                    <label for="settingsReceiptPrefix">Receipt Number Prefix</label>
+                    <input type="text" id="settingsReceiptPrefix" value="DT-REC-">
+                  </div>
+                  <div class="form-group form-col-full">
+                    <label for="settingsTuitionAddress">Tuition Address / Header Details</label>
+                    <input type="text" id="settingsTuitionAddress" value="Shop 4, Sunrise Complex, Near Station Road">
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">Save Settings</button>
+                </div>
+              </form>
+
+              <hr class="card-divider">
+
+              <div class="backup-restore-block">
+                <h3 class="card-title" style="font-size: 1.1rem; margin-bottom: 0.5rem;">Data Management</h3>
+                <p class="text-muted text-sm" style="margin-bottom: 1rem;">
+                  All student and fee records are stored securely in your browser's local storage. You can backup to a JSON file or restore anytime.
+                </p>
+                <div class="backup-actions">
+                  <button type="button" class="btn btn-secondary" onclick="exportDataBackup()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    Download Data Backup (JSON)
+                  </button>
+                  <label class="btn btn-ghost" style="cursor: pointer; margin-bottom: 0;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                    Restore from Backup
+                    <input type="file" id="restoreBackupFile" accept=".json" onchange="importDataBackup(event)" style="display: none;">
+                  </label>
+                  <button type="button" class="btn btn-danger-ghost" onclick="resetToDemoData()">
+                    Reset Demo Sample Data
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL: FEE ENTRY (Collect Fee) -->
+  <div class="modal-overlay" id="feeModalOverlay" onclick="closeFeeModal(event)">
+    <div class="modal-dialog card" onclick="event.stopPropagation()">
+      <div class="card-header flex-between">
+        <div>
+          <h2 class="card-title">Collect Tuition Fee</h2>
+          <p class="card-subtitle">Record payment & generate instant receipt</p>
+        </div>
+        <button class="modal-close-btn" onclick="closeFeeModal()">&times;</button>
+      </div>
+
+      <form id="feeEntryForm" onsubmit="handleSaveFee(event)">
+        <div class="form-grid">
+          <div class="form-group form-col-full">
+            <label for="feeStudentSelect">Select Student *</label>
+            <select id="feeStudentSelect" required onchange="handleFeeStudentChange()">
+              <option value="">-- Choose Student --</option>
+              <!-- Populated by JS -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="feeMonthSelect">Select Month *</label>
+            <select id="feeMonthSelect" required>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October" selected>October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="feeDate">Date of Payment *</label>
+            <input type="date" id="feeDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="feeAmount">Amount (₹) *</label>
+            <input type="number" id="feeAmount" required min="1" step="10">
+          </div>
+
+          <div class="form-group">
+            <label for="feePaymentMode">Payment Mode *</label>
+            <select id="feePaymentMode" required>
+              <option value="Cash">Cash</option>
+              <option value="UPI / Online">UPI / Online</option>
+              <option value="Cheque">Cheque</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-actions" style="margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeFeeModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Fee & Generate Receipt</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: MARK STUDENT AS LEFT -->
+  <div class="modal-overlay" id="markLeftModalOverlay" onclick="closeMarkLeftModal(event)">
+    <div class="modal-dialog card" style="max-width: 480px;" onclick="event.stopPropagation()">
+      <div class="card-header">
+        <h2 class="card-title">Mark Student as Left</h2>
+        <p class="card-subtitle">Keep history intact while moving from active attendance</p>
+      </div>
+
+      <form id="markLeftForm" onsubmit="handleConfirmMarkLeft(event)">
+        <input type="hidden" id="markLeftStudentId">
+        <p id="markLeftConfirmText" style="margin-bottom: 1.25rem; font-size: 0.95rem; color: var(--text-muted);"></p>
+        
+        <div class="form-group">
+          <label for="markLeavingDateInput">Leaving Date *</label>
+          <input type="date" id="markLeavingDateInput" required>
+        </div>
+
+        <div class="form-actions" style="margin-top: 1.5rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeMarkLeftModal()">Cancel</button>
+          <button type="submit" class="btn btn-danger">Confirm Student Left</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: RECEIPT VIEW / DOWNLOAD / WHATSAPP -->
+  <div class="modal-overlay" id="receiptModalOverlay" onclick="closeReceiptModal(event)">
+    <div class="modal-dialog receipt-dialog card" onclick="event.stopPropagation()">
+      <div class="receipt-modal-actions-top no-print">
+        <span class="receipt-success-tag">✓ Payment Recorded Successfully</span>
+        <button class="modal-close-btn" onclick="closeReceiptModal()">&times;</button>
+      </div>
+
+      <!-- Printable Clean Receipt Paper -->
+      <div class="receipt-paper" id="printableReceipt">
+        <div class="receipt-paper-header">
+          <div class="receipt-tuition-title" id="recTuitionName">Diksha Tuition</div>
+          <div class="receipt-tuition-sub" id="recTuitionSub">Shop 4, Sunrise Complex, Near Station Road</div>
+          <div class="receipt-badge-pill">FEE PAYMENT RECEIPT</div>
+        </div>
+
+        <div class="receipt-meta-grid">
+          <div>
+            <div class="meta-label">Receipt No.</div>
+            <div class="meta-value" id="recNumber">DT-REC-1001</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="meta-label">Payment Date</div>
+            <div class="meta-value" id="recDate">05-Oct-2026</div>
+          </div>
+        </div>
+
+        <div class="receipt-table-box">
+          <table class="receipt-table">
+            <tr>
+              <th>Student Name</th>
+              <td id="recStudentName">Riya Sharma</td>
+            </tr>
+            <tr>
+              <th>Parent Name</th>
+              <td id="recParentName">Ramesh Sharma</td>
+            </tr>
+            <tr>
+              <th>Standard / Board</th>
+              <td id="recStandard">10th Std (CBSE)</td>
+            </tr>
+            <tr>
+              <th>Tuition Fee Month</th>
+              <td id="recMonth"><strong>October 2026</strong></td>
+            </tr>
+            <tr>
+              <th>Payment Mode</th>
+              <td id="recMode">UPI</td>
+            </tr>
+            <tr class="amount-row">
+              <th>Total Amount Received</th>
+              <td class="amount-cell" id="recAmount">₹1,500</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="receipt-footer-notes">
+          <div class="receipt-stamp-box">
+            <span class="stamp-seal">PAID</span>
+          </div>
+          <div class="receipt-sign-box">
+            <div class="signature-line"></div>
+            <span class="sign-label" id="recTeacherSign">Authorized Signature</span>
+          </div>
+        </div>
+        <div class="receipt-thank-you">Thank you for your timely payment!</div>
+      </div>
+
+      <!-- Action buttons for receipt -->
+      <div class="receipt-actions-footer no-print">
+        <button class="btn btn-secondary" onclick="printReceipt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+          <span>Print / PDF Receipt</span>
+        </button>
+        <button class="btn btn-whatsapp" id="receiptWhatsAppShareBtn" onclick="sendReceiptOnWhatsApp()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          <span>Send on WhatsApp</span>
+        </button>
+        <button class="btn btn-primary" onclick="closeReceiptModal()">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">Message</div>
+
+  <script src="app.js"></script>
+</body>
+</html>

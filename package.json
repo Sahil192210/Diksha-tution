@@ -1,0 +1,15 @@
+{
+  "name": "diksha-tuition-app",
+  "version": "1.0.0",
+  "description": "Simple Tuition Record Web App",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.3",
+    "@capacitor/cli": "^8.5.3",
+    "@capacitor/core": "^8.5.3"
+  }
+}
